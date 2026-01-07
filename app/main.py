@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -9,4 +10,6 @@ def health():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=7000)
+    host = os.getenv("APP_HOST", "127.0.0.1")
+    port = int(os.getenv("APP_PORT", 7000))
+    app.run(host=host, port=port)
